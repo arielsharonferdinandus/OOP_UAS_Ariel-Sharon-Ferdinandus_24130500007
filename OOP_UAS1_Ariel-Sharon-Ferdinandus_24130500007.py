@@ -1,7 +1,5 @@
-# OOP_UAS1_ArielSharonF_1813508.py
 from datetime import date
 from typing import List
-
 
 class Person:
     def __init__(self, person_id, first_name, last_name, date_of_birth, nationality):
@@ -13,7 +11,6 @@ class Person:
 
     def get_full_name(self):
         return f"{self.first_name} {self.last_name}"
-
 
 class Player(Person):
     def __init__(self, person_id, first_name, last_name, date_of_birth, nationality,
@@ -29,7 +26,6 @@ class Player(Person):
     def __str__(self):
         return f"{self.get_full_name()} - #{self.jersey_number} - {self.position}"
 
-
 class Coach(Person):
     def __init__(self, person_id, first_name, last_name, date_of_birth, nationality,
                  coach_id, license_level, team_id, role):
@@ -41,7 +37,6 @@ class Coach(Person):
 
     def __str__(self):
         return f"{self.role}: {self.get_full_name()} (License: {self.license_level})"
-
 
 class Team:
     def __init__(self, team_id, league, division, club_id, name):
@@ -68,7 +63,6 @@ class Team:
         for player in self.players:
             print(" -", player)
 
-
 class Stadium:
     def __init__(self, stadium_id, name, league, capacity, address):
         self.stadium_id = stadium_id
@@ -76,7 +70,6 @@ class Stadium:
         self.league = league
         self.capacity = capacity
         self.address = address
-
 
 class Club:
     def __init__(self, club_id, name, founding_date, budget, league, stadium: Stadium):
@@ -98,16 +91,10 @@ class Club:
         for team in self.teams:
             team.display_team()
 
-
-# ======================
-# Interactive CLI
-# ======================
-
 def input_date(prompt):
     raw = input(prompt + " (YYYY-MM-DD): ")
     y, m, d = map(int, raw.split("-"))
     return date(y, m, d)
-
 
 def main():
     print("=== FC Cakrawala Setup ===")
@@ -117,7 +104,6 @@ def main():
     budget = float(input("Budget: "))
     league = input("League Name: ")
 
-    # Stadium
     print("\n-- Stadium Info --")
     stadium_id = input("Stadium ID: ")
     stadium_name = input("Stadium Name: ")
@@ -127,7 +113,6 @@ def main():
 
     club = Club(club_id, club_name, founding, budget, league, stadium)
 
-    # Team
     print("\n-- Team Setup --")
     team_id = input("Team ID: ")
     team_name = input("Team Name: ")
@@ -135,7 +120,6 @@ def main():
     team = Team(team_id, league, division, club_id, team_name)
     club.add_team(team)
 
-    # Coaches
     print("\n-- Add Coaches --")
     for role in ["Head Coach", "Assistant Coach"]:
         print(f"\nEntering {role}")
@@ -149,7 +133,6 @@ def main():
         coach = Coach(pid, fname, lname, dob, nat, cid, license, team_id, role)
         team.add_coach(coach)
 
-    # Players
     print("\n-- Add 15 Players --")
     for i in range(1, 16):
         print(f"\nPlayer #{i}")
@@ -168,7 +151,6 @@ def main():
 
     print("\n=== DATA RINGKASAN ===")
     club.display_info()
-
 
 if __name__ == "__main__":
     main()
